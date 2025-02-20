@@ -1,0 +1,45 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group 'com.ohgiraffers'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    junitVersion = '5.10.2'
+}
+
+sourceCompatibility = '17'
+targetCompatibility = '17'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+dependencies {
+    compileOnly('jakarta.servlet:jakarta.servlet-api:6.0.0')
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+
+    /* 목차. 0. 파일 업로드 시 필요한 의존성 3개 */
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-fileupload2-jakarta
+    implementation 'org.apache.commons:commons-fileupload2-jakarta:2.0.0-M1'
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-fileupload2-core
+    implementation 'org.apache.commons:commons-fileupload2-core:2.0.0-M1'
+    // https://mvnrepository.com/artifact/commons-io/commons-io
+    implementation 'commons-io:commons-io:2.18.0'
+
+    /* 목차. 0. 썸네일 변환 시 필요한 의존성 1개 */
+    // https://mvnrepository.com/artifact/net.coobird/thumbnailator
+    implementation 'net.coobird:thumbnailator:0.4.20'
+}
+
+test {
+    useJUnitPlatform()
+}
