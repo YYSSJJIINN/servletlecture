@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+    <!-- 서블릿 등록 -->
+    <servlet>
+        <servlet-name>xmlmapping</servlet-name>
+        <servlet-class>com.ohgiraffers.lifecycle.section01.xml.LifeCycleTestServlet</servlet-class>
+        <!--
+            load-on-startup 설정은 서블릿의 초기화 시점을 제어할 수 있는 설정값이다.
+            양수 값이 설정되면 서버(=컨테이너 = Tomcat)시작 시 서블릿이 호출되지 않았는데도 불구하고
+            먼저 초기화되며 값이 낮을 수록 우선 순위가 높다.
+            설정이 없거나 음수일 경우, 서블릿은 첫 요청이 들어왔을 때 초기화 된다.
+         -->
+        <load-on-startup>100</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>secondservlet</servlet-name>
+        <servlet-class>com.ohgiraffers.lifecycle.section01.xml.SecondServlet</servlet-class>
+    </servlet>
+    <!-- 서블릿과 URL 매핑 -->
+    <servlet-mapping>
+        <servlet-name>xmlmapping</servlet-name>
+        <url-pattern>/xml-lifecycle</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>secondservlet</servlet-name>
+        <url-pattern>/banana</url-pattern>
+    </servlet-mapping>
+</web-app>
