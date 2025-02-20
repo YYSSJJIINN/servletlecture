@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+    <filter>
+        <filter-name>encoding</filter-name>
+        <filter-class>com.ohgiraffers.filter.section02.uses.EncodingFilter</filter-class>
+        <!-- 필터에서 사용할 초기 파라미터 값을 설정 가능 -->
+        <init-param>
+            <param-name>initEncodingType</param-name>
+            <param-value>text/html; charset=UTF-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>encoding</filter-name>
+        <!-- 모든 URL 패턴에 대해 대응할 예정. -->
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+</web-app>
